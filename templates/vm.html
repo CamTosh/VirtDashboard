@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class="container">
+		<section class="serv">
+			<header class="serv__head">
+				<div>
+					<span class="serv__status serv__status--up">
+						&#9679;
+					</span>
+					<h3 class="serv__name">{{ srv['name'] }}</h3>
+				</div>
+				<div class="serv__ip">{{ srv['backend']  }}</div>
+			</header>
+			<article class="serv__elements">
+				{% for ele in srv['parameters'] %}
+					<div class="serv__element">
+						{{ ele }} : {{ srv['parameters'][ele] }}
+					</div>
+				{% endfor %}
+			</article>
+		</section>
+	</div>
+{% endblock %}

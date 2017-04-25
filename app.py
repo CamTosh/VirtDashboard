@@ -1,16 +1,31 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from app.connection import Connection
+from app.api import API
 from uuid import uuid4
 
 app = Flask(__name__)
 app.secret_key = uuid4().bytes
 
 
-
 @app.route('/')
 def index():
+
 	if session:
+
 		return render_template('index.html')
+	else:
+		return render_template('login.html')
+
+
+@app.route('/vm/<string:vm_name>')
+def getVM(vm_name):
+
+	if session:
+
+		a = API()
+		server = a.loadServer(vm_name)
+		
+		return render_template('vm.html', srv=server)
 	else:
 		return render_template('login.html')
 
@@ -33,8 +48,8 @@ def login():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-	session.pop('username', None)
+	session['username'] = None
 	
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(host='127.0.0.1', port=6969, debug=True)
