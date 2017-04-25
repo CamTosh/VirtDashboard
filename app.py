@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from app.connection import Connection
 from app.api import API
 from uuid import uuid4
+import json
+
 
 app = Flask(__name__)
 app.secret_key = uuid4().bytes
@@ -11,8 +13,10 @@ app.secret_key = uuid4().bytes
 def index():
 
 	if session:
+		a = API()
+		servers = a.loadServers()
 
-		return render_template('index.html')
+		return render_template('index.html', servers=servers)
 	else:
 		return render_template('login.html')
 
@@ -52,4 +56,11 @@ def logout():
 	
 
 if __name__ == '__main__':
-	app.run(host='127.0.0.1', port=6969, debug=True)
+
+
+	f = open("conf.json")
+	conf = json.loads(f.read())
+	f.close()
+	c = conf['dashboard']
+	
+	app.run(host=c['ip'], port=c['port'], debug=c['debug'])

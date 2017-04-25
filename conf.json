@@ -1,5 +1,11 @@
 {	
-	"username": "admin",
-	"password": "admin",
+	"dashboard": {
+		"ip": "127.0.0.1",
+		"port": 6969,
+		"debug": true,
+		"username": "admin",
+		"password": "admin",
+		"iso_path": "/root/virt/iso/"
+	},
 	"api": "http://127.0.0.1:8000/"
 }

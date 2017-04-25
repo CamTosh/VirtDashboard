@@ -9,8 +9,9 @@ class Connection(object):
 		f.close()
 
 	def login(self, username, password):
+		f = self.f['dashboard']
 
-		if username == self.f['username'] and password == self.f['password']:
+		if username == f['username'] and password == f['password']:
 			return self.error(1, "You are connected")
 		else:
 			return self.error(0, "Username or password ar inccorect")
