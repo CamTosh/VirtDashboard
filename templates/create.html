@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class="container">
+		<div class="list">
+			<h3>{{ imgs['path'] }}</h3>
+			<ul>
+				{% for img in imgs['img'] %}
+					<li>{{ img }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}

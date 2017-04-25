@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from app.connection import Connection
 from app.api import API
+from app.dashboard import Dashboard
 from uuid import uuid4
 import json
 
@@ -30,6 +31,18 @@ def getVM(vm_name):
 		server = a.loadServer(vm_name)
 		
 		return render_template('vm.html', srv=server)
+	else:
+		return render_template('login.html')
+
+
+@app.route('/create')
+def create():
+
+	if session:
+		d = Dashboard()
+		imgs = d.loadImgs()
+		
+		return render_template('create.html', imgs=imgs)
 	else:
 		return render_template('login.html')
 
