@@ -1,3 +1,4 @@
+
 /* COMMON */
 
 * {
@@ -7,6 +8,11 @@
 body {
 	background-color: #EBEDF1;
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .container {
@@ -90,6 +96,10 @@ body {
 main {
 	padding: 35px 0;
 }
+.ele {
+	width: 33%; 
+	height: 20rem;
+}
 
 .serv {
 	overflow-x: hidden;
@@ -97,8 +107,11 @@ main {
 	border-radius: 3px;
 	background-color: #F2F4F8;
 	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
-	width: 33%; 
-	height: 20rem;
+}
+.serv__element {
+	margin-bottom: 20px;
+	padding: 25px 20px;
+	background: #FFF;
 }
 
 .serv__head {
@@ -152,13 +165,87 @@ main {
 	line-height: 24px;
 }
 
-.serv__elements {
+.serv__gpu {
+	margin: 20px;
+	margin-top: 0px;
+	padding: 20px;
+	padding-bottom: 0;
+	border-radius: 2px;
+	background: #FFF;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.07);
+}
+
+.serv__grid {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-  -ms-flex-pack: justify;
-  -ms-flex-align: center;
+	-ms-flex-align: stretch;
+	margin-left: -20px;
+
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-align: stretch;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+
+.serv__grid-3 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: stretch;
+	margin-left: -20px;
+
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-align: stretch;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+
+.serv__grid > * {
+	display: block;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	min-width: 230px;
+	width: calc(100% - 20px);
+
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+}
+
+.serv__grid-3 > * {
+	display: block;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	min-width: 230px;
+	width: calc(100% * 1 / 3 - 20px);
+
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+}
+
+.serv__mod {
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: justify;
+	-ms-flex-align: center;
+	overflow:hidden;
+	padding: 11px 20px 12px 23px;
+	border-radius: 2px;
+	background: #FFF;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
 
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
@@ -168,8 +255,61 @@ main {
 	align-items: center;
 }
 
-.serv__element {
-	margin-bottom: 20px;
-	padding: 25px 20px;
-	background: #FFF;
+[class*="serv__modLabel--"]:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3px;
+	height: 100%;
+	content: "";
+}
+
+.serv__modLabel--green:before {
+	background-color: #68B665;
+}
+
+.serv__modLabel--yellow:before {
+	background-color: #FCBE32;
+}
+
+.serv__modLabel--red:before {
+	background-color: #FF5F2E;
+}
+
+.serv__modLabel {
+	color: #282828;
+	text-align: right;
+	letter-spacing: 0.9px;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.serv__modSublabel {
+	color: #5D5D5D;
+	letter-spacing: 0.72px;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.serv__modNumber {
+	color: #282828;
+	text-align: left;
+	letter-spacing: 1.57px;
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.serv__modUnit {
+	color: #282828;
+	vertical-align: bottom;
+	letter-spacing: 0.9px;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+.serv__modSubnumbler {
+	color: #5D5D5D;
+	letter-spacing: 0.72px;
+	font-weight: normal;
+	font-size: 16px;
 }
