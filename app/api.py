@@ -11,6 +11,10 @@ class API(object):
 		self.addr = j['api']
 
 
+	def getAddress(self):
+		return self.addr
+
+
 	def loadServers(self):
 		r = requests.post(self.addr + "listvm", data="null")
 		req = json.loads(r.text)
@@ -23,3 +27,15 @@ class API(object):
 		req = json.loads(r.text)
 
 		return req
+
+
+	# VM Actions
+
+	def start(self, name):
+		r = requests.post(self.addr + "startvm", data=name)
+
+	def stop(self, name):
+		r = requests.post(self.addr + "stopvm", data=name)
+
+	def delete(self, name):
+		r = requests.post(self.addr + "delvm", data=name)

@@ -19,6 +19,29 @@
 			</header>
 			<article class="serv__gpu">
 				<div class="serv__grid-3">
+					
+					<div class="serv__mod" id="start">
+						Start VM
+						<div class="serv__modNumber">
+							▶
+						</div>
+					</div>
+					<div class="serv__mod" id="stop">
+						Stop VM
+						<div class="serv__modNumber">
+							✕
+						</div>
+					</div>
+
+					<div class="serv__mod" id="delete">
+						Delete VM
+						<div class="serv__modNumber">
+							🗑
+						</div>
+					</div>
+
+				</div>
+				<div class="serv__grid-3">
 					{% for ele in srv['parameters'] %}
 						<div class="serv__mod">
 							<div>
@@ -45,4 +68,31 @@
 			</article>
 		</section>
 	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js""></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		$("#start").click(function() {
+			call("start");
+		});
+
+		$("#stop").click(function() {
+			call("stop");
+		});
+
+		$("#delete").click(function() {
+			call("delete");
+			window.location.assign('http://{{ ip['ip'] }}:{{ ip['port'] }}');
+		});
+
+		function call(arg) {
+			var name = '{{ srv['name'] }}';
+			var ip = 'http://{{ ip['ip'] }}:{{ ip['port'] }}';
+
+			$.ajax({
+				url: ip + '/vm_action/' + arg + '/' + name,
+				type: 'POST'
+			});
+		}
+	});
+	</script>
 {% endblock %}

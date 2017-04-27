@@ -21,7 +21,6 @@ def index():
 	else:
 		return render_template('login.html')
 
-
 @app.route('/vm/<string:vm_name>')
 def getVM(vm_name):
 
@@ -29,11 +28,36 @@ def getVM(vm_name):
 
 		a = API()
 		server = a.loadServer(vm_name)
-		
-		return render_template('vm.html', srv=server)
+
+		return render_template('vm.html', srv=server, ip=getHost())
 	else:
 		return render_template('login.html')
 
+@app.route('/vm_action/<string:action>/<string:vm_name>', methods=['POST'])
+def action(action, vm_name):
+
+	if session:
+		api = API()
+		
+		if action == "start":
+			api.start(vm_name)
+			
+			return "start"
+
+		elif action == "stop":
+			api.stop(vm_name)
+			
+			return "stop"
+
+		elif action == "delete":
+			api.delete(vm_name)
+			
+			return "delete"
+
+		else:
+			return "error"
+	else:
+		return redirect(url_for('index'))
 
 @app.route('/create')
 def create():
@@ -69,12 +93,16 @@ def logout():
 	
 	return redirect(url_for('index'))
 
-if __name__ == '__main__':
 
-
+def getHost():
 	f = open("conf.json")
 	conf = json.loads(f.read())
 	f.close()
 	c = conf['dashboard']
-	
+
+	return c
+
+if __name__ == '__main__':
+
+	c = getHost()
 	app.run(host=c['ip'], port=c['port'], debug=c['debug'])
