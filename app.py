@@ -63,10 +63,11 @@ def login():
 			return render_template('error.html')
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout')
 def logout():
-	session['username'] = None
+	del session['username']
 	
+	return redirect(url_for('index'))
 
 if __name__ == '__main__':
 

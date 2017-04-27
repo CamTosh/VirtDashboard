@@ -1,10 +1,33 @@
 <!doctype html>
-<title>Virt dashboard</title>
-
+<html>
 {% block head %}
-<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+<head>
+	<title>Virt dashboard</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<meta charset="utf-8">
+</head>
 {% endblock %}
-
-<main>
-	{% block body %}{% endblock %}
-</main>
+<body>
+	<header class="header">
+		<div class="container">
+			<div class="header__menuItem">
+				<a href="/" title="Home">Home</a>
+			</div>
+			<div class="header__menuItem">
+				<a href="/create" title="Create VM">Create VM</a>
+			</div>
+			<div class="header__menuItem">
+				<a href="/settings" title="Dashboard settings">Dashboard settings</a>
+			</div>
+			{% if session['username'] %}
+			<div class="header__menuItem">
+				<a href="/logout" title="Logout">Logout</a>
+			</div>
+			{% endif %}
+		</div>
+	</header>
+	<main>
+		{% block body %}
+		{% endblock %}
+	</main>
+{% include "footer.html" %}

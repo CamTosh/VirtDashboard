@@ -1,34 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
-	<div class="container">
+	<div class="list">
 		{% for srv in servers %}
-			<section class="serv ele">
-				<header class="serv__head">
-					<div>
-						<span class="serv__status serv__status--up">
-							&#9679;
-						</span>
-						<h3 class="serv__name">
-							<a href="/node/{{ srv['node'] }}">#{{ srv['node'] }}</a>
-							 | 
-							<a href="/vm/{{ srv['name'] }}">{{ srv['name'] }}</a>
-						</h3>
-					</div>
-					<div class="serv__ip">{{ srv['backend']  }}</div>
-				</header>
-				<article class="serv__gpu">
-					<div class="serv__grid">
-						<div class="serv__mod">
-							<div>
-								Pid
-							</div>
-							<div class="serv__modNumber">
-								{{ srv['parameters']['pid']}}
-							</div>
-						</div>
-					</div>
-				</article>
-			</section>
+		<section class="serv serv__head">
+			<div class="item">
+				{% if srv['parameters']['pid'] %}
+					<span class="serv__status serv__status--up">&#9679;</span>
+				{% else %}
+					<span class="serv__status serv__status--down">&#9679;</span>
+				{% endif %}
+				<a href="/node/{{ srv['node'] }}">#{{ srv['node'] }}</a>
+			</div>
+			<div class="item">
+				<a href="/vm/{{ srv['name'] }}">{{ srv['name'] }}</a>
+			</div>
+			<div class="item">
+				{{ srv['backend']  }}
+			</div>
+		</section>	
 		{% endfor %}
 	</div>
 {% endblock %}

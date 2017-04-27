@@ -1,13 +1,26 @@
 {% extends "layout.html" %}
 {% block body %}
 	<div class="container">
-		<div class="list">
-			<h3>{{ imgs['path'] }}</h3>
-			<ul>
-				{% for img in imgs['img'] %}
-					<li>{{ img }}</li>
-				{% endfor %}
-			</ul>
-		</div>
+		<form>
+			<h3>Required</h3>
+			<input type="text" placeholder="Name" name="vm[name]">
+			
+			<label>KVM</label>
+			<input type="radio" value="Kvm" name="vm[backend]">
+			<label>OpenVZ</label>
+			<input type="radio" value="OpenVZ" name="vm[backend]">
+			
+			<div class="list">
+				<select name="vm[img]">
+					{% for img in imgs['img'] %}
+						<option value="{{ imgs['path'] + img }}">{{ img }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<hr>
+			<h3>Not required</h3>
+			<input type="text" placeholder="Ip vnc" name="vm[parameters][vnc]">
+		</form>
 	</div>
 {% endblock %}
