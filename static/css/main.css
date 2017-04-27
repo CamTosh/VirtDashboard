@@ -20,7 +20,6 @@ a {
 	padding: 0 1vw;
 	max-width: 1200px;
 	max-width: calc(1200px + 1vw);
-	background-color: #fff;
 }
 
 /* HEADER */
