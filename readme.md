@@ -2,6 +2,8 @@
 
 Dashboard for Qemu API.
 
+![Dashboard](dashboard.png "Dashboard")
+
 
 Requirements :
 
