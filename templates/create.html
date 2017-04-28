@@ -1,26 +1,40 @@
 {% extends "layout.html" %}
 {% block body %}
 	<div class="container">
-		<form>
-			<h3>Required</h3>
-			<input type="text" placeholder="Name" name="vm[name]">
-			
-			<label>KVM</label>
-			<input type="radio" value="Kvm" name="vm[backend]">
-			<label>OpenVZ</label>
-			<input type="radio" value="OpenVZ" name="vm[backend]">
-			
-			<div class="list">
-				<select name="vm[img]">
-					{% for img in imgs['img'] %}
-						<option value="{{ imgs['path'] + img }}">{{ img }}</option>
-					{% endfor %}
-				</select>
-			</div>
+		<section class="serv serv__head">
+			<form method="post" action="{{url_for('createVM')}}" class="create">
+				<h3>Required</h3>
 
-			<hr>
-			<h3>Not required</h3>
-			<input type="text" placeholder="Ip vnc" name="vm[parameters][vnc]">
-		</form>
+				<div class="form__item">
+					VM Name : <input type="text" placeholder="Name" name="vm[name]"><input type="text" placeholder="Name" value="egfgegtrhhegtrihegrjhegrjiegrhjihji" name="name">
+				</div>
+
+				<div class="form__item">
+				Backend :
+					<select name="vm[backend]">
+						<option value="kvm">KVM</option>
+						<option value="openvz">OpenVZ</option>
+					</select>
+				</div>
+				<div class="form__item">
+					Image : 
+					<select name="vm[parameters][cdrom]">
+						{% for img in imgs['img'] %}
+							<option value="{{ imgs['path'] + img }}">{{ img }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<hr>
+				<h3>Not required</h3>
+				<div class="form__item">
+					VNC : <input type="text" placeholder="Ip vnc" name="vm[parameters][vnc]">
+				</div>
+
+				<div class="form__item">
+					<input type="submit" value="Create VM">
+				</div>
+			</form>
+		</section>
 	</div>
 {% endblock %}
