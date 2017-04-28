@@ -4,7 +4,7 @@
 		<section class="serv">
 			<header class="serv__head">
 				<div>
-					{% if srv['parameters']['pid'] %}
+					{% if srv['parameters']['pid'] != "0" %}
 						<span class="serv__status serv__status--up">&#9679;</span>
 					{% else %}
 						<span class="serv__status serv__status--down">&#9679;</span>

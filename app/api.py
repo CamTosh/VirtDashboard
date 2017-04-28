@@ -39,3 +39,6 @@ class API(object):
 
 	def delete(self, name):
 		r = requests.post(self.addr + "delvm", data=name)
+
+	def status(self, name):
+		r = requests.post(self.addr + "statusvm", data=name)
