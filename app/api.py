@@ -15,30 +15,42 @@ class API(object):
 		return self.addr
 
 
-	def loadServers(self):
-		r = requests.post(self.addr + "listvm", data="null")
+	def run(self, action, data):
+		r = requests.post(self.addr + action, data=data)
 		req = json.loads(r.text)
 
 		return req
+
+	def loadServers(self):
+		return self.run("listvm", "null")
 
 
 	def loadServer(self, name):
-		r = requests.post(self.addr + "getvm", data=name)
-		req = json.loads(r.text)
+		return self.run("getvm", name)
 
-		return req
+
+	def create(self, vm):
+		d = {}
+
+		d['name'] 	= vm['name']
+		d['backend'] = vm['backend']
+		
+		for k,v in vm['parameters']:
+			d[k] = v
+
+		self.run("create", json.dumps(d))
 
 
 	# VM Actions
 
 	def start(self, name):
-		r = requests.post(self.addr + "startvm", data=name)
+		return self.run("startvm", name)
 
 	def stop(self, name):
-		r = requests.post(self.addr + "stopvm", data=name)
+		return self.run("stopvm", name)
 
 	def delete(self, name):
-		r = requests.post(self.addr + "delvm", data=name)
+		return self.run("delvm", name)
 
 	def status(self, name):
-		r = requests.post(self.addr + "statusvm", data=name)
+		return self.run("statusvm", name)

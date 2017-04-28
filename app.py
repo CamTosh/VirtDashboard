@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from flask import Flask, render_template, request, session, redirect, url_for
 from app.connection import Connection
 from app.api import API
@@ -67,6 +69,25 @@ def create():
 		imgs = d.loadImgs()
 		
 		return render_template('create.html', imgs=imgs)
+	else:
+		return render_template('login.html')
+
+
+@app.route('/createvm', methods=['POST'])
+def createVM():
+
+	if session:
+		
+		params = request.form['vm[]']
+		"""
+		if vm['name'] and vm['backend']:
+			a = API()
+			a.create(vm)
+			
+			return redirect(url_for('index'))
+		else:
+			return redirect(url_for('create'))
+		"""
 	else:
 		return render_template('login.html')
 
